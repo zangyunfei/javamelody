@@ -20,7 +20,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="src/main/webapp/lib/activation-1.1.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/lib/aopalliance-1.0.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/lib/asm-3.3.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/lib/asm-4.2.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/lib/aspectjweaver-1.8.1.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/lib/c3p0-0.9.1.2.jar"/>
@@ -51,7 +50,6 @@
 	<classpathentry kind="lib" path="src/main/webapp/lib/resteasy-jaxrs-2.2.1.GA.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/lib/resteasy-jettison-provider-2.2.1.GA.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/lib/scannotation-1.0.3.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/lib/servlet-api-2.5-20081211.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/lib/servlet-api-3.0-alpha-1.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/lib/sjsxp-1.0.1.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/lib/spring-aop-3.0.7.RELEASE.jar"/>
