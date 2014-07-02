@@ -10,9 +10,8 @@
 	http://www.springframework.org/schema/aop     
     http://www.springframework.org/schema/aop/spring-aop-2.5.xsd"
 	default-autowire="byName">
-	<context:component-scan base-package="com.zyf.*" />
+	<context:component-scan base-package="com.zyf" />
 	
-    <import resource="classpath:net/bull/javamelody/monitoring-spring.xml" />
 	<import resource="classpath:spring/spring-db.xml" />
 	<import resource="classpath:spring/spring-dao.xml" />
 	<aop:aspectj-autoproxy />

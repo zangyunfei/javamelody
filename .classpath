@@ -26,5 +26,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="src/main/webapp/lib/ibatis-2.3.4.726.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/lib/jrj-common-1.1.11.jar"/>
+	<classpathentry kind="lib" path="/xjb_paycenter/lib/spring.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

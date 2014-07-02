@@ -1,5 +1,9 @@
 package com.zyf.rest;
 
+import java.util.EventListener;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.Filter;
 
 import org.apache.log4j.Logger;
@@ -15,6 +19,7 @@ import org.mortbay.jetty.servlet.FilterHolder;
 import org.mortbay.jetty.servlet.ServletHolder;
 import org.mortbay.thread.QueuedThreadPool;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.ContextLoaderListener;
 
 /**
  * 启动一个jetty容器，结合javamelody用于监控应用性能
@@ -90,16 +95,14 @@ public class JavaMelodyMonitorServer implements
 		context.addFilter(new FilterHolder(monitoringFilter), "/monitoring",
 				Handler.REQUEST);
 
-		/*
-		 * Map<String, String> initParams = new HashMap<String, String>();
-		 * initParams.put("contextConfigLocation",
-		 * "classpath:net/bull/javamelody/monitoring-spring.xml");
-		 * context.setInitParams(initParams);
-		 */
+		Map<String, String> initParams = new HashMap<String, String>();
+		initParams.put("contextConfigLocation",
+				"classpath:net/bull/javamelody/monitoring-spring.xml");
+		context.setInitParams(initParams);
 
 		/** add listener */
-		// EventListener listener = new ContextLoaderListener();
-		// context.addEventListener(listener);
+		EventListener listener = new ContextLoaderListener();
+		context.addEventListener(listener);
 
 		/** add Servlet */
 		ServletHolder servlet = new ServletHolder(HttpServletDispatcher.class);
