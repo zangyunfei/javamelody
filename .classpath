@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" output="target/classes" path="src/main/java">
+	<classpathentry kind="src" path="src/main/java">
 		<attributes>
 			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src/main/resources"/>
-	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
+	<classpathentry kind="src" path="src/test/java">
 		<attributes>
 			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
@@ -36,10 +36,9 @@
 	<classpathentry kind="lib" path="src/main/webapp/lib/javamelody-1.51.0.war"/>
 	<classpathentry kind="lib" path="src/main/webapp/lib/javamelody-core-1.51.0.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/lib/javassist-3.12.1.GA.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/lib/jaxrs-api-2.2.1.GA.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/lib/jcip-annotations-1.0.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/lib/jettison-1.2.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/lib/jetty-6.1.26.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/jetty-6.1.26.jar" sourcepath="C:/Users/zangyunfei/.m2/repository/org/mortbay/jetty/jetty/6.1.26/jetty-6.1.26-sources.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/lib/jetty-util-6.1.26.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/lib/jrj-common-1.1.11.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/lib/jrobin-1.5.9.jar"/>
@@ -63,5 +62,12 @@
 	<classpathentry kind="lib" path="src/main/webapp/lib/spring-test-3.0.7.RELEASE.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/lib/spring-tx-3.0.7.RELEASE.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/spring-web-3.0.7.RELEASE.jar" sourcepath="C:/Users/zangyunfei/.m2/repository/org/springframework/spring-web/3.0.7.RELEASE/spring-web-3.0.7.RELEASE-sources.jar"/>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="src/main/webapp/lib/jaxrs-api-2.2.2.GA.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

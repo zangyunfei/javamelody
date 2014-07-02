@@ -8,7 +8,6 @@ public class HelloRestWebTest {
 	@Test
 	public void testMonitor() {
 		String resMes = null;
-
 		for (int i = 0; i < 1000; i++) {
 			/*
 			 * try { resMes = HttpClientUtil.get(url + "zyfqfghjtime:" + i,

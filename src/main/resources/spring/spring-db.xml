@@ -8,7 +8,7 @@
 	default-autowire="byName">
 	
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-		<property name="driverClass" value="${cash_core_DB.driver}"/>
+		<property name="driverClass" value="${cash_core_DB.driverClass}"/>
 		<property name="jdbcUrl" value="${cash_core_DB.url}"/>
 		<property name="user" value="${cash_core_DB.user}"/>
 		<property name="password" value="${cash_core_DB.password}"/>

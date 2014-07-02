@@ -1,5 +1,6 @@
 package com.zyf.rest;
 
+import java.util.EventListener;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,37 +14,26 @@ import org.mortbay.jetty.Server;
 import org.mortbay.jetty.bio.SocketConnector;
 import org.mortbay.jetty.handler.ContextHandlerCollection;
 import org.mortbay.jetty.handler.ResourceHandler;
+import org.mortbay.jetty.nio.SelectChannelConnector;
 import org.mortbay.jetty.servlet.Context;
 import org.mortbay.jetty.servlet.FilterHolder;
 import org.mortbay.jetty.servlet.ServletHolder;
 import org.mortbay.thread.QueuedThreadPool;
-import org.springframework.stereotype.Service;
+import org.springframework.web.context.ContextLoaderListener;
 
 /**
  * 启动一个jetty容器，结合javamelody用于监控应用性能
  * 
  */
-@Service
-public class JavaMelodyMonitorServer implements
-		JavaMelodyMonitorServerInterface {
+public class JavaMelodyMonitorServer {
+	private static Logger log = Logger.getLogger(JavaMelodyMonitorServer.class);
+	static Server webServer;
+	private static String serverName = "monitor-test";
+	private static String host = "127.0.0.1";
+	private static int serverPort = 80;
+	private static Context context = null;
 
-	private Logger log = Logger.getLogger(JavaMelodyMonitorServer.class);
-	Server webServer;
-
-	public JavaMelodyMonitorServer() {
-
-	}
-
-	/**
-	 * 
-	 * @param serverName
-	 *            应用名称
-	 * @param host
-	 *            绑定的IP地址
-	 * @param serverPort
-	 *            应用端口，jetty启动的端口默认会在此基础上加1000,如果配置文件有配置jetty.listen.port则配置优先
-	 */
-	public void start(String serverName, String host, int serverPort) {
+	public void run() {
 		init(serverName, host, serverPort);
 		start();
 		final JavaMelodyMonitorServer server = this;
@@ -61,9 +51,10 @@ public class JavaMelodyMonitorServer implements
 		});
 	}
 
-	private void init(String serverName, String host, int serverPort) {
+	private static void init(String serverName, String host, int serverPort) {
 		int port = serverPort;
-		Connector connector = new SocketConnector();
+		Connector connector = new SelectChannelConnector();
+
 		webServer = new Server();
 		QueuedThreadPool pool = new QueuedThreadPool();
 		pool.setMinThreads(3);
@@ -80,7 +71,8 @@ public class JavaMelodyMonitorServer implements
 		webServer.addConnector(connector);
 
 		ContextHandlerCollection col = new ContextHandlerCollection();
-		Context context = new Context(col, "/", Context.SESSIONS);
+		context = new Context(col, "/", Context.SESSIONS);
+
 		ResourceHandler resourceHandler = new ResourceHandler();
 		webServer.setHandlers(new Handler[] { col, resourceHandler });
 		webServer.addHandler(context);
@@ -93,24 +85,23 @@ public class JavaMelodyMonitorServer implements
 		context.addFilter(new FilterHolder(monitoringFilter), "/monitoring",
 				Handler.REQUEST);
 
+		/** contextConfigLocation */
 		Map<String, String> initParams = new HashMap<String, String>();
 		initParams.put("contextConfigLocation",
-				"classpath:net/bull/javamelody/monitoring-spring.xml");
+				"classpath:spring/spring-app.xml");
 		context.setInitParams(initParams);
 
 		/** add listener */
-		// EventListener listener = new ContextLoaderListener();
-		// context.addEventListener(listener);
-
+		EventListener listener = new ContextLoaderListener();
+		context.addEventListener(listener);
 		/** add Servlet */
 		ServletHolder servlet = new ServletHolder(HttpServletDispatcher.class);
 		servlet.setInitParameter("javax.ws.rs.Application",
 				RestApplication.class.getName());
 		context.addServlet(servlet, "/*");
-
 	}
 
-	private void start() {
+	private static void start() {
 		try {
 
 			webServer.start();
@@ -127,6 +118,14 @@ public class JavaMelodyMonitorServer implements
 		} catch (Exception e) {
 			log.error("Error stop httpserver", e);
 		}
-
 	}
+
+	public static Context getContext() {
+		return context;
+	}
+
+	public static void setContext(Context context) {
+		JavaMelodyMonitorServer.context = context;
+	}
+
 }
