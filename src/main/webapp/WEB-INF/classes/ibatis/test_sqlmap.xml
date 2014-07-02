@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="TestPO">
+	<typeAlias alias="test" type="com.zyf.po.TestPO" />
+
+	<insert id="insert" parameterClass="test">
+		<selectKey resultClass="int" keyProperty="id">
+			SELECT @@IDENTITY
+			AS ID
+		</selectKey> 
+      <![CDATA[
+		insert into test 
+		(id,remark)
+		values
+		(null, #remark#);
+      ]]>
+	</insert>
+</sqlMap>

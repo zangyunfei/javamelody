@@ -16,7 +16,7 @@ public class TestDAOTest extends AbstractBaseTest {
 	@Test
 	public void testInsert() {
 		TestPO test = new TestPO();
-		test.setRemark("zyf高leggao");
+		test.setRemark("zyfleggao");
 		Object o = testDAO.insert(test);
 		Assert.assertTrue(o != null);
 	}

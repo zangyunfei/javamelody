@@ -13,19 +13,57 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6">
 		<attributes>
-			<attribute name="owner.project.facets" value="java"/>
+			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="src/main/webapp/lib/activation-1.1.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/aopalliance-1.0.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/asm-3.3.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/asm-4.2.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/aspectjweaver-1.8.1.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/c3p0-0.9.1.2.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/cglib-3.1.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/commons-codec-1.6.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/fastjson-1.1.41.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/httpclient-4.3.1.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/httpcore-4.3.1.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/httpmime-4.1.2.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/lib/ibatis-2.3.4.726.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/javamelody-1.51.0.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/javamelody-1.51.0.war"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/javamelody-core-1.51.0.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/javassist-3.12.1.GA.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/jaxrs-api-2.2.1.GA.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/jcip-annotations-1.0.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/jettison-1.2.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/jetty-6.1.26.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/jetty-util-6.1.26.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/lib/jrj-common-1.1.11.jar"/>
-	<classpathentry kind="lib" path="/xjb_paycenter/lib/spring.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/jrobin-1.5.9.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/jsr250-api-1.0.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/mysql-connector-java-5.1.31.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/resteasy-jaxb-provider-2.2.1.GA.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/resteasy-jaxrs-2.2.1.GA.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/resteasy-jettison-provider-2.2.1.GA.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/scannotation-1.0.3.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/servlet-api-2.5-20081211.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/servlet-api-3.0-alpha-1.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/sjsxp-1.0.1.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/spring-aop-3.0.7.RELEASE.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/spring-asm-3.0.7.RELEASE.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/spring-beans-3.0.7.RELEASE.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/spring-context-3.0.7.RELEASE.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/spring-core-3.0.7.RELEASE.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/spring-expression-3.0.7.RELEASE.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/spring-jdbc-3.0.7.RELEASE.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/spring-orm-3.0.7.RELEASE.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/spring-test-3.0.7.RELEASE.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/lib/spring-tx-3.0.7.RELEASE.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
