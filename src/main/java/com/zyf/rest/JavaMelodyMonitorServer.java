@@ -1,7 +1,5 @@
 package com.zyf.rest;
 
-import java.util.EventListener;
-
 import javax.servlet.Filter;
 
 import org.apache.log4j.Logger;
@@ -16,16 +14,22 @@ import org.mortbay.jetty.servlet.Context;
 import org.mortbay.jetty.servlet.FilterHolder;
 import org.mortbay.jetty.servlet.ServletHolder;
 import org.mortbay.thread.QueuedThreadPool;
-import org.springframework.web.context.ContextLoaderListener;
+import org.springframework.stereotype.Service;
 
 /**
  * 启动一个jetty容器，结合javamelody用于监控应用性能
  * 
  */
-public class JavaMelodyMonitorServer {
+@Service
+public class JavaMelodyMonitorServer implements
+		JavaMelodyMonitorServerInterface {
 
 	private Logger log = Logger.getLogger(JavaMelodyMonitorServer.class);
 	Server webServer;
+
+	public JavaMelodyMonitorServer() {
+
+	}
 
 	/**
 	 * 
@@ -36,8 +40,7 @@ public class JavaMelodyMonitorServer {
 	 * @param serverPort
 	 *            应用端口，jetty启动的端口默认会在此基础上加1000,如果配置文件有配置jetty.listen.port则配置优先
 	 */
-	public JavaMelodyMonitorServer(String serverName, String host,
-			int serverPort) {
+	public void start(String serverName, String host, int serverPort) {
 		init(serverName, host, serverPort);
 		start();
 		final JavaMelodyMonitorServer server = this;
@@ -95,8 +98,8 @@ public class JavaMelodyMonitorServer {
 		 */
 
 		/** add listener */
-		EventListener listener = new ContextLoaderListener();
-		context.addEventListener(listener);
+		// EventListener listener = new ContextLoaderListener();
+		// context.addEventListener(listener);
 
 		/** add Servlet */
 		ServletHolder servlet = new ServletHolder(HttpServletDispatcher.class);

@@ -5,7 +5,7 @@ import java.util.Set;
 
 import javax.ws.rs.core.Application;
 
-import com.zyf.start.HelloRestWeb;
+import com.zyf.web.HelloRestWeb;
 
 public class RestApplication extends Application {
 	@Override
