@@ -5,13 +5,21 @@ import java.util.Set;
 
 import javax.ws.rs.core.Application;
 
-import com.zyf.web.HelloRestWeb;
+import org.springframework.context.ApplicationContext;
+
+import com.zyf.context.ServiceContext;
 
 public class RestApplication extends Application {
-	@Override
-	public Set<Class<?>> getClasses() {
-		Set<Class<?>> set = new HashSet<Class<?>>();
-		set.add(HelloRestWeb.class);
-		return set;
+	private Set<Object> singletons = new HashSet<Object>();
+
+	public RestApplication() {
+		ApplicationContext ctx = ServiceContext.getContext();
+		singletons.add(ctx.getBean("helloRestWeb"));
 	}
+
+	@Override
+	public Set<Object> getSingletons() {
+		return singletons;
+	}
+
 }

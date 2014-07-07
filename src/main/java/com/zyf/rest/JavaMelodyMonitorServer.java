@@ -1,8 +1,6 @@
 package com.zyf.rest;
 
 import java.util.EventListener;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.Filter;
 
@@ -19,12 +17,13 @@ import org.mortbay.jetty.servlet.Context;
 import org.mortbay.jetty.servlet.FilterHolder;
 import org.mortbay.jetty.servlet.ServletHolder;
 import org.mortbay.thread.QueuedThreadPool;
-import org.springframework.web.context.ContextLoaderListener;
+import org.springframework.stereotype.Service;
 
 /**
  * 启动一个jetty容器，结合javamelody用于监控应用性能
  * 
  */
+@Service
 public class JavaMelodyMonitorServer {
 	private static Logger log = Logger.getLogger(JavaMelodyMonitorServer.class);
 	static Server webServer;
@@ -80,24 +79,28 @@ public class JavaMelodyMonitorServer {
 		System.setProperty("javamelody.storage-directory",
 				"javamelody-" + pool.getName());
 
+		/**
+		 * contextConfigLocation Map<String, String> initParams = new
+		 * HashMap<String, String>(); initParams.put("contextConfigLocation",
+		 * "classpath:spring/spring-app.xml");
+		 * context.setInitParams(initParams);
+		 */
+
+		/**
+		 * add listener EventListener listener2 = new ContextLoaderListener();
+		 * context.addEventListener(listener2);
+		 */
+		EventListener listener = new net.bull.javamelody.SessionListener();
+		context.addEventListener(listener);
 		/** add filter */
 		Filter monitoringFilter = new net.bull.javamelody.MonitoringFilter();
 		context.addFilter(new FilterHolder(monitoringFilter), "/monitoring",
 				Handler.REQUEST);
-
-		/** contextConfigLocation */
-		Map<String, String> initParams = new HashMap<String, String>();
-		initParams.put("contextConfigLocation",
-				"classpath:spring/spring-app.xml");
-		context.setInitParams(initParams);
-
-		/** add listener */
-		EventListener listener = new ContextLoaderListener();
-		context.addEventListener(listener);
 		/** add Servlet */
 		ServletHolder servlet = new ServletHolder(HttpServletDispatcher.class);
 		servlet.setInitParameter("javax.ws.rs.Application",
 				RestApplication.class.getName());
+
 		context.addServlet(servlet, "/*");
 	}
 

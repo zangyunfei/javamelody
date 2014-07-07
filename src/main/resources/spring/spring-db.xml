@@ -4,48 +4,45 @@
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
 	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
-	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd"
-	default-autowire="byName">
-	
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-		<property name="driverClass" value="${cash_core_DB.driverClass}"/>
-		<property name="jdbcUrl" value="${cash_core_DB.url}"/>
-		<property name="user" value="${cash_core_DB.user}"/>
-		<property name="password" value="${cash_core_DB.password}"/>
+		<property name="driverClass" value="${cash_core_DB.driverClass}" />
+		<property name="jdbcUrl" value="${cash_core_DB.url}" />
+		<property name="user" value="${cash_core_DB.user}" />
+		<property name="password" value="${cash_core_DB.password}" />
 		<property name="initialPoolSize">
-            <value>${c3p0.initialPoolSize}</value>
-        </property>
-        <property name="minPoolSize">
-            <value>${c3p0.minPoolSize}</value>
-        </property>
-        <property name="maxPoolSize">
-            <value>${c3p0.maxPoolSize}</value>
-        </property>
-        <property name="acquireIncrement">
-            <value>${c3p0.acquireIncrement}</value>
-        </property>
-        <property name="maxIdleTime">
-            <value>${c3p0.maxIdleTime}</value>
-        </property>
-        <property name="maxStatements">
-            <value>${c3p0.maxStatements}</value>
-        </property>
-        <property name="maxStatementsPerConnection">
-            <value>${c3p0.maxStatementsPerConnection}</value>
-        </property>
-        <property name="idleConnectionTestPeriod"><value>${c3p0.idleConnectionTestPeriod}</value></property>
-       <property name="preferredTestQuery"><value>select 1</value></property>
+			<value>${c3p0.initialPoolSize}</value>
+		</property>
+		<property name="minPoolSize">
+			<value>${c3p0.minPoolSize}</value>
+		</property>
+		<property name="maxPoolSize">
+			<value>${c3p0.maxPoolSize}</value>
+		</property>
+		<property name="acquireIncrement">
+			<value>${c3p0.acquireIncrement}</value>
+		</property>
+		<property name="maxIdleTime">
+			<value>${c3p0.maxIdleTime}</value>
+		</property>
+		<property name="maxStatements">
+			<value>${c3p0.maxStatements}</value>
+		</property>
+		<property name="maxStatementsPerConnection">
+			<value>${c3p0.maxStatementsPerConnection}</value>
+		</property>
+		<property name="idleConnectionTestPeriod">
+			<value>${c3p0.idleConnectionTestPeriod}</value>
+		</property>
+		<property name="preferredTestQuery">
+			<value>select 1</value>
+		</property>
 	</bean>
-	
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"  autowire="default" />
-	<tx:advice id="txAdvice" transaction-manager="transactionManager">
-		<tx:attributes>
-			<tx:method name="do*" propagation="REQUIRED" rollback-for="Exception"/>
-			<tx:method name="create*" propagation="REQUIRED" rollback-for="Exception"/>
-			<tx:method name="commit*" propagation="REQUIRED" rollback-for="Exception"/>
-		</tx:attributes>
-	</tx:advice>
-	<aop:config>
-		<aop:advisor pointcut="execution(* com.zyf..*Service.*(..))" advice-ref="txAdvice"/>
-	</aop:config>
+
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager" />
 </beans>

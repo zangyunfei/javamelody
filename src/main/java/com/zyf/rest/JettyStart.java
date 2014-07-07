@@ -1,15 +1,13 @@
 package com.zyf.rest;
 
+import com.zyf.context.ServiceContext;
+
 public class JettyStart {
 
 	public static void main(String[] args) throws Exception {
 
-		JavaMelodyMonitorServer javaMelodyMonitorServer = new JavaMelodyMonitorServer();
+		JavaMelodyMonitorServer javaMelodyMonitorServer = (JavaMelodyMonitorServer) ServiceContext
+				.getContext().getBean("javaMelodyMonitorServer");
 		javaMelodyMonitorServer.run();
-		/*
-		 * new Thread(new Runnable() {
-		 * 
-		 * @Override public void run() { RestServer.start(); } }).start()
-		 */;
 	}
 }
