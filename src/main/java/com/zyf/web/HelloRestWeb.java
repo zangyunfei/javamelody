@@ -5,12 +5,16 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
-import com.zyf.context.ServiceContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.zyf.dao.TestDAO;
 import com.zyf.po.TestPO;
 
 @Path(value = "echo")
+@Component
 public class HelloRestWeb {
+	@Autowired
 	private TestDAO testDAO;
 
 	@GET
@@ -19,9 +23,6 @@ public class HelloRestWeb {
 	public String echoService(@PathParam("message") String message) {
 		TestPO po = new TestPO();
 		po.setRemark(message);
-		if (testDAO == null) {
-			testDAO = (TestDAO) ServiceContext.getContext().getBean("testDAO");
-		}
 		testDAO.insert(po);
 		return message;
 	}

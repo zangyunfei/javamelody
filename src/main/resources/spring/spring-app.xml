@@ -1,42 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx" xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context-2.5.xsd
 	http://www.springframework.org/schema/aop     
     http://www.springframework.org/schema/aop/spring-aop-2.5.xsd"
-	default-autowire="byName">
-	<context:component-scan base-package="com.zyf" />
-	
-	<import resource="classpath:spring/spring-db.xml" />
-	<import resource="classpath:spring/spring-dao.xml" />
-	<aop:aspectj-autoproxy />
-	
-	<!--javamelody monitor java metho-->
-	<bean id="facadeMonitoringAdvisor" class="net.bull.javamelody.MonitoringSpringAdvisor">
-		<property name="pointcut">
-			<bean class="org.springframework.aop.support.JdkRegexpMethodPointcut">
-				<property name="pattern" value="com.zyf.web.*" />
-			</bean>
-		</property>
-	</bean> 
-	<!--javamelody monitor DataSource -->
-	<bean id="springDataSourceBeanPostProcessor" class="net.bull.javamelody.SpringDataSourceBeanPostProcessor">
-	</bean>
-	<bean id="mainDataSource" class="net.bull.javamelody.SpringDataSourceFactoryBean">
-		<property name="targetName" value="dataSource" />
-	</bean>
-	<bean id="configBean"
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="locations">
-			<list>
-				<value>classpath:config.properties</value>
-			</list>
-		</property>
-	</bean>
+    default-autowire="byName">
+    <context:component-scan base-package="com.zyf" />
+    <!--javamelody aspectj -->
+    <aop:config proxy-target-class="true">
+        <aop:advisor advice-ref="monitoringAdvice"
+            pointcut-ref="monitoringPointcut" />
+    </aop:config>
+    <bean id="monitoringAdvice" class="net.bull.javamelody.MonitoringSpringInterceptor" />
+    <bean id="monitoringPointcut" class="net.bull.javamelody.MonitoredWithAnnotationPointcut" />
+    <!--javamelody datasource -->
+    <bean id="springDataSourceBeanPostProcessor"
+        class="net.bull.javamelody.SpringDataSourceBeanPostProcessor">
+    </bean>
+    <!--javamelody monitor java method -->
+    <bean id="facadeMonitoringAdvisor" class="net.bull.javamelody.MonitoringSpringAdvisor">
+        <property name="pointcut">
+            <bean
+                class="org.springframework.aop.support.JdkRegexpMethodPointcut">
+                <property name="pattern" value="com.zyf.web.*" />
+            </bean>
+        </property>
+    </bean>
+    <import resource="classpath:spring/spring-db.xml" />
+    <import resource="classpath:spring/spring-dao.xml" />
+    <bean id="configBean"
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:config.properties</value>
+            </list>
+        </property>
+    </bean>
 
 </beans>
